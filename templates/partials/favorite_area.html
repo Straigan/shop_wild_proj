@@ -1,0 +1,15 @@
+{% load bootstrap_icons %}
+
+<div class="col-1 list-group list-group-horizontal btn-group" id="likesarea" style="padding-top: 1px; padding-left: 25px;" role="group">
+    
+        <button class="btn" hx-post="{% url 'favorite_product' product.id %}" id="like-button" 
+          hx-target="#likesarea" hx-swap="outerHTML" >
+          {% if request.user in product.favorite.all %}
+            {% bs_icon 'heart-fill' size='2.5em' color='#9933CC' %}
+          
+          {% else %}
+            {% bs_icon 'heart' size='2.5em' color='#9933CC' %}
+          {% endif %}
+        </button>
+
+</div>

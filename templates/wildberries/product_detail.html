@@ -1,0 +1,43 @@
+{% extends "layout/basic.html" %}
+{% load bootstrap_icons %}
+
+{% block content %}
+<div class="container-fluid" style="padding-left: 50px;">
+    <div class="row">
+        <a class="text-decoration-none" href="{% url "index" %}"><h6 style="color: grey; padding-top: 20px;">Главная</h6></a>
+        <h2>{{ product.name }}</h2>
+        <span style="margin-bottom: 20px;">Артикул: {{ product.code }}</span>
+        <div class=col-1>
+            <img src="{{ product.img.url }}" alt="{{ product.name }}" height="200px" style="margin-bottom: 20px;">
+            <img src="{{ product.img_1.url }}" alt="{{ product.name }}" height="200px" style="margin-bottom: 20px;">
+        </div>
+        <div class=col-4>
+            <img src="{{ product.img.url }}" alt="{{ product.name }}" height="800px">
+        </div>
+        <div class=col-5>
+            <div class="row">
+                    <div class="col-3" style="margin-bottom: 20px;">
+                        <b style="font-size: 35px;">{{ product.price }}&#8381</b>
+                    </div>
+                <span style="margin-bottom: 20px;">Цвет: <b>{{ product.color }}</b></span>
+            </div>
+            <img src="{{ product.img.url }}" alt="{{ product.name }}" height="200px" style="margin-right: 20px;">
+            <div class="row" style="padding-top: 30px;">
+                <div class="col-4">
+                    <button type="button" class="btn" style="height: 50px; width: 250px; background-color: #9933CC;color: white; font-weight: bold">Добавить в корзину</button>
+                </div>
+                {% include "partials/favorite_area.html" %}
+            </div>
+            <div class="row" style="padding-top: 30px;">
+                <div class="col-2">
+                    <button type="button" class="btn btn-secondary">Продавец</button>
+                </div>
+                <div class="col-4" style="padding-left: -30px; padding-top: 5px;">
+                    <b>{{ product.seller }}</b>
+                    <a href="#" title="{{ product.seller }}" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" data-bs-content="ОГРН: {{ product.seller.ogrn }}">{% bs_icon 'info-circle' size='1.5em' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

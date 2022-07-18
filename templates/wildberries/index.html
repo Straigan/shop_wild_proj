@@ -1,0 +1,18 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+<div class="container-fluid" style="padding-left: 50px;">
+  <ul class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 row-cols-xl-8 list-unstyled list">
+    {% for product in products %}
+    <li class="col mb-4" data-tags="numbers" data-categories="typography">
+      <a class="d-block text-dark text-decoration-none" href="{% url 'detail_product' product.id %}">
+        <div class="p-3 py-4 mb-2 bg-light text-left rounded">
+          <img src="{{ product.img.url }}" alt="{{ product.name }}" height="100%" width="100%">
+        </div>
+        <div class="name text-decoration-none text-left pt-1"><b>{{ product.price }}&#8381</b></div>
+        <div class="name text-decoration-none text-left pt-1">{{ product.name }}</div>
+      </a>
+    </li>
+    {% endfor %}</ul>
+</div>
+{% endblock %}

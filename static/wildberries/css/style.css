@@ -1,0 +1,43 @@
+.footer { 
+    position: absolute; 
+    left: 0;
+    right: 0;
+    bottom: 0; 
+    height: 50px; 
+}
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-primary);
+}
+
+.row_header {
+    background-color: #9933CC;
+    height: 120px !important;
+    padding: 40px;
+}
+
+img:hover {
+    outline: 3px solid #9933CC; /* Параметры рамки */
+}
+
+.icon_header {
+    float: left; 
+    margin-right: 50px; 
+    text-align: center;
+}
+
+.glyphicon-class{
+    color: white !important; 
+    display: block !important; 
+    text-align: center !important;
+}
+
+h6 {
+    color: grey; 
+    padding-top: 20px;
+}
+
+.btn-primary {
+    background-color: #9933CC !important;
+    border-color: #9933CC !important;
+    margin-right: 10px !important;
+}

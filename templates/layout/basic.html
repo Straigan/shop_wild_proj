@@ -1,0 +1,89 @@
+{% load bootstrap5 %}
+{% load static %}
+{% load bootstrap_icons %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'wildberries/css/style.css' %}">
+        <link rel="shortcut icon" href="#">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Wildberries</title>
+    </head>
+    <body>
+
+        <header>
+            <div class="container-fluid">
+                <div class="row row_header">
+                    <div class="row">
+                        <div class="col-2 logo_wildb"><a class="text-decoration-none" href="{% url "index" %}"><h1 class="text-center text-white">Wildberries</h1></a></div>
+                        <div class="col-7 form-outline">
+                            <input type="search" id="form1" class="form-control" placeholder="Я ищу" aria-label="Search" />
+                        </div>
+                        <div class="col-3 bs-glyphicons">
+                            <ul class="bs-glyphicons-list" style="list-style: none;">
+                                {% if user.is_authenticated %}
+                                <li class="icon_header">
+                                    <a class="text-decoration-none" href="{% url 'logout' %}">
+                                        {% bs_icon 'person-fill' size='2.0em' color='white' %}
+                                        <span class="glyphicon-class">Выйти</span>
+                                    </a>
+                                </li>
+                                <li class="icon_header">
+                                    <a class="text-decoration-none" href="{% url 'favorite_list' %}">
+                                        {% bs_icon 'heart-fill' size='2.0em' color='white' %}
+                                        <span class="glyphicon-class">Избранное</span>
+                                    </a>
+                                </li>
+                                <li class="icon_header">
+                                    {% bs_icon 'cart-fill' size='2.0em' color='white' %}
+                                    <span class="glyphicon-class">Корзина</span>
+                                </li>
+                                {% else %}
+                                <li class="icon_header">
+                                    <a class="text-decoration-none" href="{% url 'login' %}">
+                                        {% bs_icon 'person-fill' size='2.0em' color='white' %}
+                                        <span class="glyphicon-class">Войти</span>
+                                    </a>
+                                </li>
+                                <li class="icon_header">
+                                    <a class="text-decoration-none" href="{% url 'favorite_list' %}">
+                                        {% bs_icon 'heart-fill' size='2.0em' color='white' %}
+                                        <span class="glyphicon-class">Избранное</span>
+                                    </a>
+                                </li>
+                                <li class="icon_header">
+                                    {% bs_icon 'cart-fill' size='2.0em' color='white' %}
+                                    <span class="glyphicon-class">Корзина</span>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+        <script>
+            document.body.addEventListener('htmx:configRequest', (e) => {
+              e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+              })
+        </script>
+        <script>
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+              return new bootstrap.Popover(popoverTriggerEl)
+            })
+        </script>
+        
+    </body>
+</html>
